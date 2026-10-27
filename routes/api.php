@@ -1,0 +1,13 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Liberu\Modules\Automation\AiGateway\Api\Http\Controllers\AiGatewayResourceController;
+
+Route::middleware(['api', 'auth:sanctum', 'throttle:60,1'])->prefix('api/v1/automation/ai-gateway')->group(function (): void {
+    Route::get('/', [AiGatewayResourceController::class, 'index']);
+    Route::post('/', [AiGatewayResourceController::class, 'store']);
+    Route::get('/{id}', [AiGatewayResourceController::class, 'show']);
+    Route::patch('/{id}', [AiGatewayResourceController::class, 'update']);
+    Route::delete('/{id}', [AiGatewayResourceController::class, 'destroy']);
+    Route::post('/{id}/transition', [AiGatewayResourceController::class, 'transition']);
+});
